@@ -1,9 +1,0 @@
-{
-  "name": "yagasaki-labs",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "commit": "git pull && echo ❇️ OK! && read -p 'Descriptions Commit: ' message && git add . && echo -n \"$message - \" && node getTime.js | xargs -I {} git commit -m \"$message - {}\" && git push"
-  }
-}
