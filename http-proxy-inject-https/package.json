@@ -1,0 +1,16 @@
+{
+  "name": "fivem-http-inject-proxy-https",
+  "version": "1.0.0",
+  "description": "HTTPS reverse proxy for intercepting players.json and injecting test entries (self-signed cert + persistence)",
+  "main": "http-inject-proxy-players-https.js",
+  "scripts": {
+    "start": "node http-inject-proxy-players-https.js 8443 127.0.0.1 30120 ./cert.pem ./key.pem false"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "node-fetch": "^2.6.7"
+  },
+  "author": "",
+  "license": "MIT"
+}

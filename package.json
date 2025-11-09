@@ -1,0 +1,25 @@
+{
+  "name": "yagasaki-labs",
+  "version": "1.0.0",
+  "description": "Default to using Bun instead of Node.js.",
+  "main": "1MInteractions.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yagasaki7K/yagasaki-labs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yagasaki7K/yagasaki-labs/issues"
+  },
+  "homepage": "https://github.com/Yagasaki7K/yagasaki-labs#readme",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "https-proxy-agent": "^7.0.6",
+    "socks-proxy-agent": "^8.0.5"
+  }
+}

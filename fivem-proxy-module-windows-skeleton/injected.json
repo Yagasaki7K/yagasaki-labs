@@ -1,0 +1,12 @@
+[
+  {
+    "endpoint": "127.0.0.1",
+    "id": 999999,
+    "identifiers": [
+      "license:52a8be797f2925ddeae69b7fcb6818008f6b8bfd",
+      "license2:52a8be797f2925ddeae69b7fcb6818008f6b8bfd"
+    ],
+    "name": "Fake Player",
+    "ping": 5
+  }
+]

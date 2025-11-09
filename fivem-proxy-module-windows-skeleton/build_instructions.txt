@@ -1,0 +1,18 @@
+Build instructions (summary)
+----------------------------
+Windows (Visual Studio):
+ - Create x64 DLL project.
+ - Add dll_proxy.cpp.
+ - Add single-header nlohmann/json.hpp to project folder or set include path.
+ - Adjust function names if necessary (exports).
+ - Build -> copy DLL to server, backup original as .real.dll or .bak.
+
+Linux:
+ - g++ -shared -fPIC -o libcitizen-server-impl.so so_wrapper.cpp -ldl
+ - Rename original lib to .real.so and copy wrapper as libcitizen-server-impl.so.
+
+MinHook injector:
+ - Download/build MinHook (https://github.com/TsudaKageyu/minhook)
+ - Include MinHook headers and link against lib.
+ - Set target VA in minhook_injector.cpp and build DLL.
+ - Inject with any DLL injector or use process startup mechanisms.
