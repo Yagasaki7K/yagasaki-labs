@@ -3715,38 +3715,62 @@ function fireEvent(el, type, opts) {
   el.dispatchEvent(ev);
 }
 
+function getTextField(form) {
+  if (!form) return null;
+
+  // Preferência: input (exceto tipos inúteis)
+  var input =
+    form.querySelector("input:not([type]), input[type='text'], input[type='search'], input[type='email'], input[type='url'], input[type='tel']") ||
+    form.querySelector("input");
+
+  if (input) return input;
+
+  // Fallback: textarea
+  var textarea = form.querySelector("textarea");
+  if (textarea) return textarea;
+
+  return null;
+}
+
 // ===== MAIN =====
 (async function () {
   var form = document.querySelector("form");
-  var input = form ? form.querySelector("input") : null;
-  var submit = form ? form.querySelector("button[type='submit']") : null;
+  var field = getTextField(form);
+  var submit = form ? form.querySelector("button[type='submit'], input[type='submit']") : null;
 
-  if (!form || !input || !submit) {
-    console.error("Form, input ou botão não encontrados.");
+  if (!form || !field || !submit) {
+    console.error("Form, campo de texto (input/textarea) ou botão submit não encontrados.", {
+      form: !!form,
+      field: !!field,
+      submit: !!submit,
+    });
     return;
   }
 
-  var linhas = TEXTO.split("\n").map(function (l) {
-    return l.trim();
-  }).filter(Boolean);
+  var linhas = TEXTO.split("\n")
+    .map(function (l) {
+      return l.trim();
+    })
+    .filter(Boolean);
 
   for (var i = 0; i < linhas.length; i++) {
     var linha = linhas[i];
 
     // Foco
-    input.focus();
+    field.focus();
 
     // Limpa e seta valor (React-safe)
-    setValue(input, "");
-    fireEvent(input, "input");
+    setValue(field, "");
+    fireEvent(field, "input");
+    fireEvent(field, "change");
 
-    setValue(input, linha);
-    fireEvent(input, "input");
-    fireEvent(input, "change");
+    setValue(field, linha);
+    fireEvent(field, "input");
+    fireEvent(field, "change");
 
     // Simula Enter (muitos formulários enviam assim)
-    fireEvent(input, "keydown", { key: "Enter", bubbles: true });
-    fireEvent(input, "keyup", { key: "Enter", bubbles: true });
+    fireEvent(field, "keydown", { key: "Enter", code: "Enter", bubbles: true });
+    fireEvent(field, "keyup", { key: "Enter", code: "Enter", bubbles: true });
 
     // Tentativa direta de submit
     if (typeof form.requestSubmit === "function") {
